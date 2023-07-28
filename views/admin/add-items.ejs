@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<%- include('../parts/admin/head'); %>
+</head>
+
+<body>
+
+<div class='layout-wrapper layout-navbar-full layout-horizontal layout-without-menu'>
+    <div class="layout-container">
+        <%- include('../parts/admin/nav') %>
+
+        <div class="container-xxl flex-grow-1 container-p-y">
+            <div class="col-xl">
+                <div class="card mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0"><%- edit ? 'Edit Book' : 'Add Book' %> </h5>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" action="<%- edit ? `/admin/edit-item/${book.id }` : '/admin/add-item' %>">
+                            <div class="mb-3">
+                                <label class="form-label" for="basic-default-fullname">Name</label>
+                                <input value="<%- edit ? book.name : "" %>"  name="name" type="text" class="form-control" id="basic-default-fullname"
+                                       placeholder="Name">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="basic-default-company">Category</label>
+                                <select name="category"  placeholder="Category" class="form-control" id="basic-default-company" name="" id="">
+                                    <option value="">Select category</option>
+                                    <% categories.forEach(item => { %>
+                                        <option value="<%= item.id  %>" <% if (edit && book.categoryId.equals(item.id)) { %>selected<% } %>><%= item.name %></option>
+                                    <% }) %>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="basic-default-email">Writer name</label>
+                                <div class="input-group input-group-merge">
+                                    <input value="<%- edit ? book.writerName : "" %>" name="writerName" type="text" id="basic-default-email" class="form-control"
+                                           placeholder="Writer name"
+                                           aria-describedby="basic-default-email2">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="basic-default-phone">Photo link</label>
+                                <input value="<%- edit ? book.photoLink : "" %>" name="photoLink" type="text" id="basic-default-phone" class="form-control"
+                                       placeholder="link">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="basic-default-message">Price</label>
+                                <input value="<%- edit ? book.price : "" %>" name="price" id="basic-default-message" class="form-control"
+                                       placeholder="price">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+<%- include('../parts/admin/scripts') %>
+
+
+</body>
+</html>
+
+

@@ -1,0 +1,109 @@
+<!--Top Header-->
+<section class="top-header">
+    <div class="container">
+        <div class="col-xs-6 col-md-6 top-user">
+            <div class="user-name">
+                <p>Welcome to bookIdStore</p>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-6  mainmenu">
+            <nav>
+                <ul>
+                    <!--                    <li>-->
+                    <!--                        <a href="register.html">Register</a>-->
+                    <!--                    </li>-->
+                    <li>
+                        <a href="admin/add-items">Admin</a>
+                    </li>
+
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+
+<!--Menu-->
+<header>
+    <div id="top" class="container box-logo-menu">
+        <div class="row">
+            <nav class="col-md-12 navigation-menu">
+
+                <div class="col-md-3 content-logo">
+                    <a href="/"><h2>Evo<span>book</span></h2></a>
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                data-target="#navbar-collapse-1" aria-expanded="false" aria-controls="nav-collapse1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-8 mainmenu">
+                    <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                        <ul class="menu-first-level">
+                            <li class="expand">
+                                <a href="/">Home</a>
+                            </li>
+                            <li><a href="/about">About Us</a></li>
+                            <li class="exp-mega">
+                                <a href="/products">Products</a>
+                            </li>
+                            <li class="exp-mega">
+                                <a href="/contact">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Top Cart -->
+                <div class="col-md-1 box-shoppingCart">
+                    <div class="list-product dropdown content-count-cart-header" auto-close="disabled">
+                        <div class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                            <img src="/images/basket.png" alt="">
+                            <p class="number-prod-cart">
+                                    <span class="fa-stack fa-3x">
+                                        <strong class="fa-stack-1x fa-stack-text fa-inverse"><%= cart.length %></strong>
+                                    </span>
+                            </p>
+                        </div>
+                        <div id="dropdown" class="dropdown-menu vertical-li dropdown-prod-cart content" role="menu">
+                            <ul>
+                                <% cart.forEach(cartItem => { %>
+
+                                    <li class="box-li-cart">
+                                        <div class="col-xs-3 col-md-3 box-cart-bookId"><img
+                                                    style="width: 200px;height: 70px;object-fit: cover;"
+                                                    src="<%= cartItem.bookId.photoLink %>" alt="cart item"></div>
+                                        <div class="col-xs-8 col-md-8 minicart-data">
+                                            <p class="mc-name"><%= cartItem.bookId.name %></p>
+                                            <p> <%= cartItem.quantity %>X $<%= cartItem.bookId.price %></p>
+                                        </div>
+                                        <form method="post" action="/cart-delete/<%= cartItem.bookId.id %>">
+                                            <div class="btn-remove-prod">
+                                                <button><i class="fa fa-times"
+                                                           aria-hidden="true"></i></button>
+                                            </div>
+                                        </form>
+                                    </li>
+                                <% }) %>
+                            </ul>
+                            <div class="separator"></div>
+                            <div id="cartInfo"><p class="minucart-price  ">
+                                    Subtotal <%= cart.length ? cart.map(item => item.quantity * item.bookId.price).reduce((a, b) => a + b) : 0 %>
+                                    $</p></div>
+                            <% if(cart.length) { %>
+                                <a href="/saveToOrder" id="goToCheckOut">Proceed to purchase</a>
+                            <% } else { %>
+                                <a href="/order" id="goToCheckOut">Orders</a>
+                            <% } %>
+
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+        </div>
+    </div>
+</header>

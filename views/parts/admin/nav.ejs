@@ -1,0 +1,85 @@
+<nav class="layout-navbar navbar navbar-expand-xl align-items-center bg-navbar-theme" id="layout-navbar">
+    <div class="container-xxl">
+
+
+        <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none d-none">
+            <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+                <i class="bx bx-menu bx-sm"></i>
+            </a>
+        </div>
+
+
+        <div class="navbar-brand app-brand demo d-xl-flex py-0 me-4 d-none d-lg-flex">
+            <a href="/" class="app-brand-link gap-2">
+          <span class="app-brand-logo demo">
+
+
+</span>
+                <span class="content-logo">
+             <h2>Evo<span>Book</span></h2>
+        </span>
+            </a>
+
+
+            <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-xl-none">
+                <i class="bx bx-chevron-left bx-sm align-middle"></i>
+            </a>
+
+        </div>
+
+        <!-- Search Small Screens -->
+        <div class="navbar-search-wrapper search-input-wrapper container-xxl d-none">
+            <input type="text" class="form-control search-input  border-0" placeholder="Search..."
+                   aria-label="Search...">
+            <i class="bx bx-x bx-sm search-toggler cursor-pointer"></i>
+        </div>
+
+
+    </div>
+</nav>
+<aside id="layout-menu"
+       class="layout-menu-horizontal menu menu-horizontal container-fluid flex-grow-0 bg-menu-theme"
+       data-bg-class="bg-menu-theme"
+       style="touch-action: none; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+    <div class="container-xxl d-flex h-100">
+
+
+        <a href="#" class="menu-horizontal-prev d-none"></a>
+        <div class="menu-horizontal-wrapper">
+            <ul class="menu-inner" style="margin-left: 0px;">
+
+                <!-- Dashboards -->
+                <li class="menu-item <%- path === '/add-items' ? 'active' : ''%>">
+                    <a href="/admin/add-items" class="menu-link">
+                        <div >Add items</div>
+                    </a>
+                </li>
+
+                <li class="menu-item <%- path === '/books' ? 'active' : '' %>">
+                    <a href="/admin/books" class="menu-link">
+                        <div >Books</div>
+                    </a>
+                </li>
+
+                <li class="menu-item <%- path === '/messages' ? 'active' : '' %>">
+                    <a href="/admin/messages" class="menu-link">
+                        <div >Messages</div>
+                    </a>
+                </li>
+
+                <li class="menu-item <%- path === '/add-category' ? 'active' : '' %>">
+                    <a href="/admin/add-category" class="menu-link">
+                        <div >Add Category</div>
+                    </a>
+                </li>
+
+                <li class="menu-item <%- path === '/categories' ? 'active' : '' %>">
+                    <a href="/admin/categories" class="menu-link">
+                        <div >Categories</div>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+        <a href="#" class="menu-horizontal-next d-none"></a></div>
+</aside>

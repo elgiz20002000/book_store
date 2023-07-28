@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<%- include('parts/head'); %>
+<title><%= title %></title>
+</head>
+<body>
+
+
+<%- include('parts/navbar') %>
+
+
+<div class="container page-details-product">
+    <div class="row">
+        <div class="col-md-12 table-padding">
+
+            <div class="panel panel-info-full">
+
+                <div class="list-product">
+                    <div class="col-md-3 my-shop-animation">
+                        <div class="box-prod">
+                            <div class="box-img-book">
+                                <img style="width: 242px; height: 341px; object-fit: cover" src="<%= book.photoLink%>">
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-9 box-desc-detail">
+                        <h2 class="title-product"><%= book.name%></h2>
+
+                        <p class="author-txt"><span>Author: </span><%= book.writerName%></p>
+
+
+                        <p class="book-price"> $<%= book.price%></p>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('parts/footer') %>
+
+
+<%- include('parts/scripts'); %>
+</body>
+</html>

@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html>
+<%- include('parts/head'); %>
+<title><%= title %></title>
+</head>
+<body>
+
+
+<%- include('parts/navbar')%>
+
+<section class="container">
+    <div class="col-md-12 table-padding">
+        <div class="col-md-3 column-box form-search ">
+            <form novalidate action="" method="get">
+                <input type="text" hidden="hidden" name="page" value="<%= page%>">
+                <div class="sw-search">
+                    <div class="nav-search" id="nav-search">
+                            <span class="input-icon">
+                                <input name="search" placeholder="Filter list ..." class="nav-search-input"
+                                       autocomplete="off" autofocus="" aria-invalid="false">
+                                <i class="search-icon fa fa-search nav-search-icon"></i>
+                            </span>
+                    </div>
+                </div>
+                <!--FILTER CATEGORIES-->
+                <div class="filter-table">
+                    <h3>Categories</h3>
+                    <div class="list-category-column">
+                        <ul>
+                            <% categories.forEach(item => { %>
+                                <li data-filter='<%= item.name %>' class="filter active">
+                                    <input name="category" value="<%= item.id %>" type="radio">
+                                    <%= item.name %>
+                                    <div class="line-separator"></div>
+                                    <div class="line-separator2"></div>
+                                </li>
+                            <% }) %>
+                        </ul>
+                    </div>
+                </div>
+                <!--FILTER PRICES-->
+                <div class="lateral-filter">
+                    <article class="price-range filter-table">
+                        <h3>Price Range</h3>
+                        <div class="content-filter-price">
+                            <div class="col-md-4 inp-price data-price">
+
+                                <input id="first-range" required="" name="minValue"
+                                >
+                            </div>
+                            <div class="col-md-4 inp-price data-price">
+
+                                <input id="second-range" required="" name="maxValue"
+                                >
+                            </div>
+                            <div class="col-md-4 search-btn">
+                                <button type="submit" class="btn default" tabindex="0"><span>Search</span></button>
+                            </div>
+
+                        </div>
+                        <div id="slider-range"
+                             class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
+                            <div class="ui-slider-range ui-widget-header ui-corner-all"
+                                 style="left: 15%; width: 45%;"></div>
+                            <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"
+                                  style="left: 15%;"></span><span
+                                    class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"
+                                    style="left: 60%;"></span></div>
+                    </article>
+                </div>
+
+
+            </form>
+
+        </div>
+
+        <div class="col-md-9 panel panel-info-full">
+            <div class="col-banner">
+                <a href="" class="img-adv">
+                    <img src="images/banner/banner3.png" alt="">
+                </a>
+                <div class="adv-txt">
+                    <h3>EvoCovers</h3>
+                    <p>Free Catalog Evobook</p>
+                </div>
+                <div class="adv-bonus fadeInRight animated">
+                    <p class="percentage">25%</p>
+                    <p>bonus</p>
+                </div>
+            </div>
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <div class="col-xs-6"><h2>Books</h2></div>
+                    <div class="col-xs-6 button-new">
+                        <a href="/list-products" class="btn btn-primary"><i class="fa fa-align-justify" aria-hidden="true"></i></a>
+                        <a href="/products" class="btn btn-primary"><i class="fa fa-th-large" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="dataMix" class="grid-product">
+                <% books.forEach(item => { %>
+                    <div class="col-md-12 my-shop-animation mix category-Art" style="display: inline-block;" data-bound="">
+                        <div class="box-prod group-book">
+                            <div class="box-img-book">
+
+                                <div class="col-md-3 box-list-prod">
+                                    <div class="book-cover-shadow"></div>
+                                    <img style="width: 100%; height: 233px; object-fit: cover;" src="<%= item.photoLink %>" alt="Book">
+
+                                    <div class="box-btn-shop">
+                                        <form method="post" action="/cart/<%= item.id %>">
+                                            <div class="bt-img">
+                                                <button type="submit" class="btn btn-add-cart"><i
+                                                            class="fa fa-shopping-bag"></i></button>
+                                            </div>
+                                        </form>
+                                        <div class="bt-img"><a class="btn btn-det-cart" href="product_detail/<%= item.id%>"><i
+                                                        class="fa fa-list"></i></a></div>
+                                        <div class="bt-img">
+                                            <button type="button" class="btn btn-det-cart"><i class="fa fa-heart"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-9 book-desc">
+                                    <h2 class="title-product"><%= item.name  %></h2>
+
+
+                                    <p class="author-txt"><%= item.writerName %></p>
+
+                                    <p class="author-txt"><%= item.categoryId.name %></p>
+
+                                    <p class="book-price">$<%= item.price %></p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                <% }) %>
+
+            <div id="dataMix" class="grid-product">
+
+                <div style="margin-top: 20px; display: flex" class="col-md-12">
+                    <button <%- +page - 1 < 1 ? 'disabled' : '' %> style="margin:0 10px" class="more btn btn-primary btn-block" ng-click="loadMore()">
+                        <a style="color: white" href="?page=<%= +page - 1 %>">
+                            Previous page
+                        </a>
+                    </button>
+                    <button <%- +page + 1 > limit ? 'disabled' : '' %> style="margin:0 10px" class="more btn btn-primary btn-block" ng-click="loadMore()">
+                        <a style="color: white" href="?page=<%= +page + 1 %>">
+                            Next page
+                        </a>
+                    </button>
+                </div>
+            </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<%- include('parts/footer')%>
+
+
+<%- include('parts/scripts'); %>
+</body>
+</html>
+
+
