@@ -26,7 +26,7 @@
 @font-face {
 	font-family: 'flexslider-icon';
 	src:url('fonts/flexslider-icon.eot');
-	src:url('fonts/flexslider-icon.eot?') format('embedded-opentype'),
+	src:url('fonts/flexslider-icon.eot') format('embedded-opentype'),
 		url('fonts/flexslider-icon.woff') format('woff'),
 		url('fonts/flexslider-icon.ttf') format('truetype'),
 		url('fonts/flexslider-icon.svg') format('svg');
