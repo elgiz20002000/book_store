@@ -51,7 +51,7 @@ app.use(function (err, req, res, next) {
     res.render("error");
 });
 
-app.use(`/.netlify/functions/api`, router);
+// app.use(`/.netlify/functions/api`, router);.
 
 
 mongoose.connect('mongodb+srv://Elgiz:U4z4YKD7DTEUtxBT@cluster1.db3ynra.mongodb.net/Book')
