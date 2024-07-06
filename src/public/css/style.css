@@ -2200,7 +2200,7 @@ header{border-bottom:1px solid #ebebeb;}
 .exlusive-book-option2{
     margin-bottom:110px;
     background:#d3d3d3;
-    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#d2d2d2+26,d5d5d5+100&0.65+0,0+100 */
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#d2d2d2+26,d5d5d5+100&0.65+0,0+100 */
     background: -moz-linear-gradient(left,  rgba(210,210,210,0.65) 0%, rgba(210,210,210,0.48) 26%, rgba(213,213,213,0) 100%); /* FF3.6-15 */
     background: -webkit-linear-gradient(left,  rgba(210,210,210,0.65) 0%,rgba(210,210,210,0.48) 26%,rgba(213,213,213,0) 100%); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to right,  rgba(210,210,210,0.65) 0%,rgba(210,210,210,0.48) 26%,rgba(213,213,213,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
@@ -3625,7 +3625,7 @@ header{border-bottom:1px solid #ebebeb;}
 }
 
 .bglayer{
-	background: url("http://www.theme-oxygen.com/envato/evobook/preview/html/images/2.jpg");
+	background: url("https://www.theme-oxygen.com/envato/evobook/preview/html/images/2.jpg");
 	z-index: 1;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -3642,7 +3642,7 @@ header{border-bottom:1px solid #ebebeb;}
 }
 
 .frontlayer{
-	background: url("http://www.theme-oxygen.com/envato/evobook/preview/html/images/1.png");
+	background: url("https://www.theme-oxygen.com/envato/evobook/preview/html/images/1.png");
 	z-index: 2;
 	-moz-background-size: cover;
   -o-background-size: cover;

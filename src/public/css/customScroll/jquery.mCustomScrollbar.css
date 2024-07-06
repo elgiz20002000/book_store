@@ -1,6 +1,6 @@
 /*
 == malihu jquery custom scrollbar plugin ==
-Plugin URI: http://manos.malihu.gr/jquery-custom-content-scroller
+Plugin URI: https://manos.malihu.gr/jquery-custom-content-scroller
 */
 
 
@@ -368,7 +368,7 @@ yx-axis
 	.mCSB_scrollTools .mCSB_buttonDown,
 	.mCSB_scrollTools .mCSB_buttonLeft,
 	.mCSB_scrollTools .mCSB_buttonRight{
-		background-image: url(http://www.theme-oxygen.com/envato/evobook/preview/html/css/customScroll/mCSB_buttons.png); /* css sprites */
+		background-image: url(https://www.theme-oxygen.com/envato/evobook/preview/html/css/customScroll/mCSB_buttons.png); /* css sprites */
 		background-repeat: no-repeat;
 		opacity: 0.4; filter: "alpha(opacity=40)"; -ms-filter: "alpha(opacity=40)"; 
 	}
