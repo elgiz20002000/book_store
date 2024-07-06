@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "startDev": "nodemon  src/app.js"
+    "startDev": "nodemon  src/app.js",
+    "start": "node src/app.js NODE_ENV=production"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
