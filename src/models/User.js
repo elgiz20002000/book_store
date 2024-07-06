@@ -1,6 +1,5 @@
 
 const {Schema, model} = require('mongoose')
-const {Sequelize} = require("sequelize");
 
 const UserSchema = new Schema({
     name: {
