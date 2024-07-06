@@ -11,7 +11,7 @@
 <section class="container">
     <div class="col-md-12 table-padding">
         <div class="col-md-3 column-box form-search ">
-            <form novalidate action="" method="get">
+            <form novalidate method="get">
                 <div class="sw-search">
                     <div class="nav-search" id="nav-search">
                             <span class="input-icon">
@@ -110,6 +110,7 @@
 
                                 <div class="box-btn-shop">
                                     <form method="post" action="/cart/<%= item.id %>">
+                                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                                         <div class="bt-img">
                                             <button type="submit" class="btn btn-add-cart"><i
                                                         class="fa fa-shopping-bag"></i></button>

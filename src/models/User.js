@@ -7,6 +7,16 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
+    email: {
+        type: String,
+        required: true
+    },
+    password: {
+        type: Schema.Types.String,
+        required: true,
+    },
+    token:String,
+    tokenExpiration:Date,
     cart:{
         items:[{
             bookId:{type:Schema.Types.ObjectId, ref:'Book', required: true},

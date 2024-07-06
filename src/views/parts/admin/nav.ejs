@@ -9,7 +9,7 @@
         </div>
 
 
-        <div class="navbar-brand app-brand demo d-xl-flex py-0 me-4 d-none d-lg-flex">
+        <div class="navbar-brand app-brand demo d-xl-flex py-0 me-4 d-none d-lg-flex justify-content-between align-items-center col-12">
             <a href="/" class="app-brand-link gap-2">
           <span class="app-brand-logo demo">
 
@@ -21,8 +21,11 @@
             </a>
 
 
-            <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-xl-none">
-                <i class="bx bx-chevron-left bx-sm align-middle"></i>
+            <a style="cursor: pointer"  class=" text-large ms-auto ">
+                <form method="post" action="/auth/logout">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <input type="submit" value="Logout">
+                </form>
             </a>
 
         </div>
@@ -49,33 +52,33 @@
             <ul class="menu-inner" style="margin-left: 0px;">
 
                 <!-- Dashboards -->
-                <li class="menu-item <%- path === '/add-items' ? 'active' : ''%>">
+                <li class="menu-item <%- path === '/add-items' ? 'active' : '' %>">
                     <a href="/admin/add-items" class="menu-link">
-                        <div >Add items</div>
+                        <div>Add items</div>
                     </a>
                 </li>
 
                 <li class="menu-item <%- path === '/books' ? 'active' : '' %>">
                     <a href="/admin/books" class="menu-link">
-                        <div >Books</div>
+                        <div>Books</div>
                     </a>
                 </li>
 
                 <li class="menu-item <%- path === '/messages' ? 'active' : '' %>">
                     <a href="/admin/messages" class="menu-link">
-                        <div >Messages</div>
+                        <div>Messages</div>
                     </a>
                 </li>
 
                 <li class="menu-item <%- path === '/add-category' ? 'active' : '' %>">
                     <a href="/admin/add-category" class="menu-link">
-                        <div >Add Category</div>
+                        <div>Add Category</div>
                     </a>
                 </li>
 
                 <li class="menu-item <%- path === '/categories' ? 'active' : '' %>">
                     <a href="/admin/categories" class="menu-link">
-                        <div >Categories</div>
+                        <div>Categories</div>
                     </a>
                 </li>
 

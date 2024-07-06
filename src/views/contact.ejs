@@ -28,6 +28,7 @@
                     </p>
 
                     <form id="contact-form" role="form" method="POST" action="/send-message">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                         <div class="row">
                             <div class="form-group col-lg-6">
                                 <label for="input1">Name *</label>

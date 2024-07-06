@@ -10,6 +10,9 @@
     height: 120px;
     object-fit: cover;
 }
+.card {
+    margin: 0 auto;
+}
 
 :root {
     --bs-blue: #007bff;

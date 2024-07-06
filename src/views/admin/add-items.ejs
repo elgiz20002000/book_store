@@ -18,6 +18,8 @@
                     </div>
                     <div class="card-body">
                         <form method="post" action="<%- edit ? `/admin/edit-item/${book.id }` : '/admin/add-item' %>">
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
                             <div class="mb-3">
                                 <label class="form-label" for="basic-default-fullname">Name</label>
                                 <input value="<%- edit ? book.name : "" %>"  name="name" type="text" class="form-control" id="basic-default-fullname"

@@ -111,6 +111,7 @@
 
                                     <div class="box-btn-shop">
                                         <form method="post" action="/cart/<%= item.id %>">
+                                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                                             <div class="bt-img">
                                                 <button type="submit" class="btn btn-add-cart"><i
                                                             class="fa fa-shopping-bag"></i></button>
@@ -118,10 +119,6 @@
                                         </form>
                                         <div class="bt-img"><a class="btn btn-det-cart" href="product_detail/<%= item.id%>"><i
                                                         class="fa fa-list"></i></a></div>
-                                        <div class="bt-img">
-                                            <button type="button" class="btn btn-det-cart"><i class="fa fa-heart"></i>
-                                            </button>
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-9 book-desc">

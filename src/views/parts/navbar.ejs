@@ -12,9 +12,25 @@
                     <!--                    <li>-->
                     <!--                        <a href="register.html">Register</a>-->
                     <!--                    </li>-->
-                    <li>
-                        <a href="admin/add-items">Admin</a>
-                    </li>
+
+                    <% if(isAuthenticated) { %>
+                        <li>
+                            <a href="/admin/add-items">Admin</a>
+                        </li>
+                    <% } else {%>
+                        <li>
+                            <a href="/auth/login">Login</a>
+                        </li>
+
+
+                        <li>
+                            <a href="/auth/signup">Signup</a>
+                        </li>
+                    <% }%>
+
+
+
+
 
                 </ul>
             </nav>

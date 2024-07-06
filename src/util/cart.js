@@ -1,4 +1,5 @@
 const Cart = require('../models/Cart')
+
 const fetchCartData = async (req, res, next) => {
     try {
         const cart = await Cart.findOne({ where: { userId: req.user.id } });

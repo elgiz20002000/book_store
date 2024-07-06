@@ -37,7 +37,8 @@
                         <tr>
                             <td class="cart-column-img">
                                 <div class="col-md-3 cart-prod-img">
-                                    <img style="width:300px;height:195px; object-fit: cover" alt="<%= item.bookId.name %>"
+                                    <img style="width:300px;height:195px; object-fit: cover"
+                                         alt="<%= item.bookId.name %>"
                                          src="<%= item.bookId.photoLink %>">
                                     <p><%= item.bookId.name %></p>
                                 </div>
@@ -46,11 +47,14 @@
                                 <div class="input-append">
 
                                     <form method="post" action="/change-quantity/<%= item.id %>?change_count=-1">
-                                        <input  class="btn bt-minus-prod" type="submit" value="-" aria-disabled="true"
-                                                <%= item.quantity === 1 ? 'disabled' : ''%>>
+                                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                        <input class="btn bt-minus-prod" type="submit" value="-" aria-disabled="true"
+                                                <%= item.quantity === 1 ? 'disabled' : '' %>>
                                     </form>
-                                    <input disabled class="text-center quantity-prod" value="<%= item.quantity %>" aria-invalid="false">
+                                    <input disabled class="text-center quantity-prod" value="<%= item.quantity %>"
+                                           aria-invalid="false">
                                     <form method="post" action="/change-quantity/<%= item.id %>?change_count=1">
+                                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                                         <input class="btn btn-lg btn-primary bt-plus-prod" type="submit" value="+"
                                                tabindex="0"
                                                aria-disabled="false">
@@ -63,7 +67,8 @@
 
                             <td class="ic-remove" title="remove from cart">
                                 <form method="post" action="/order-delete/<%= item.bookId.id %>">
-                                    <button >
+                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                    <button>
                                         <i class="fa fa-times"></i>
                                     </button>
                                 </form>
@@ -75,35 +80,24 @@
                     <tr class="cart-total">
                         <td><p>Total</p></td>
                         <td class="tdCenter"><p></p></td>
-                        <% if (order.length) {%>
+                        <% if (order.length) { %>
                             <td class="tdRight"><p>Subtotal
-                                    $<%= order.map(item => item.quantity * item.bookId.price).reduce((a, b) => a + b) %></p></td>
+                                    $<%= order.map(item => item.quantity * item.bookId.price).reduce((a, b) => a + b) %></p>
+                            </td>
                             <td></td>
                         <% } else { %>
                             <td class="tdRight"><p>Subtotal
                                     $0</p></td>
                             <td></td>
-                        <% }%>
+                        <% } %>
                     </tr>
 
                     <tr>
                         <td colspan="4" class="btn-checkout-prod">
                             <button class="btn btn-lg btn-primary cart-clear-all">
-                                <a style="color: white" href="/clear-cart"><i class="icon-trash icon-white"></i> clear cart</a>
+                                <a style="color: white" href="/clear-cart"><i class="icon-trash icon-white"></i> clear
+                                    cart</a>
                             </button>
-<!--                            <div class="btn-payment">-->
-
-<!--                                <button class="btn btn-lg btn-primary checkout">-->
-<!--                                    <i class="icon-ok icon-white"></i> order by mail-->
-<!--                                </button>-->
-<!--                                <button class="btn btn-lg btn-primary checkout">-->
-<!--                                    <i class="icon-ok icon-white"></i> check out PayPal-->
-<!--                                </button>-->
-<!--                                <button>-->
-<!--                                    <img src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"-->
-<!--                                         alt="checkout PayPal">-->
-<!--                                </button>-->
-<!--                            </div>-->
                         </td>
                     </tr>
                     </tbody>
@@ -111,371 +105,12 @@
             </div>
         </div>
 
-<!--        &lt;!&ndash;Form Order with Email&ndash;&gt;-->
-<!--        <div class="col-md-12 content-send-order animate-show animate-hide" aria-hidden="true">-->
-
-<!--            <h2>Please compile the form!</h2>-->
-<!--            <div class="box-content contact">-->
-
-<!--                <div class="panel-body">-->
-<!--                    <form name="contactform" class="form-horizontal">-->
-<!--                        <div class="form-group">-->
-<!--                            <div class="col-lg-12">-->
-<!--                                <input type="text" class="form-control" id="inputName" name="inputName"-->
-<!--                                       placeholder="Your Name" required="" autocomplete="off">-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="form-group">-->
-<!--                            <div class="col-lg-12">-->
-<!--                                <input type="text" class="form-control" id="inputSurname" name="inputSurname"-->
-<!--                                       placeholder="Your Surname" required="" autocomplete="off">-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="form-group">-->
-<!--                            <div class="col-lg-12">-->
-<!--                                <input type="email" class="form-control" id="inputEmail" name="inputEmail"-->
-<!--                                       placeholder="Your Email" required="" autocomplete="off">-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        &lt;!&ndash; COUNTRY &ndash;&gt;-->
-<!--                        <div class="form-group">-->
-<!--                            <div class="col-lg-12">-->
-<!--                                <select class="select-opt form-control-select" aria-invalid="false">-->
-<!--                                    <option class="frt-options" value=""> - Select a Country -</option>-->
-<!--                                    &lt;!&ndash; ngRepeat: country in countries &ndash;&gt;-->
-<!--                                    <option class="other-opt " value="Afghanistan">Afghanistan</option>-->
-<!--                                    <option class="other-opt " value="Aland Islands">Aland Islands</option>-->
-<!--                                    <option class="other-opt " value="Albania">Albania</option>-->
-<!--                                    <option class="other-opt " value="Algeria">Algeria</option>-->
-<!--                                    <option class="other-opt " value="American Samoa">American Samoa</option>-->
-<!--                                    <option class="other-opt " value="Andorra">Andorra</option>-->
-<!--                                    <option class="other-opt " value="Angola">Angola</option>-->
-<!--                                    <option class="other-opt " value="Anguilla">Anguilla</option>-->
-<!--                                    <option class="other-opt " value="Antarctica">Antarctica</option>-->
-<!--                                    <option class="other-opt " value="Antigua and Barbuda">Antigua and Barbuda</option>-->
-<!--                                    <option class="other-opt " value="Argentina">Argentina</option>-->
-<!--                                    <option class="other-opt " value="Armenia">Armenia</option>-->
-<!--                                    <option class="other-opt " value="Aruba">Aruba</option>-->
-<!--                                    <option class="other-opt " value="Australia">Australia</option>-->
-<!--                                    <option class="other-opt " value="Austria">Austria</option>-->
-<!--                                    <option class="other-opt " value="Azerbaijan">Azerbaijan</option>-->
-<!--                                    <option class="other-opt " value="Bahamas">Bahamas</option>-->
-<!--                                    <option class="other-opt " value="Bahrain">Bahrain</option>-->
-<!--                                    <option class="other-opt " value="Bangladesh">Bangladesh</option>-->
-<!--                                    <option class="other-opt " value="Barbados">Barbados</option>-->
-<!--                                    <option class="other-opt " value="Belarus">Belarus</option>-->
-<!--                                    <option class="other-opt " value="Belgium">Belgium</option>-->
-<!--                                    <option class="other-opt " value="Belize">Belize</option>-->
-<!--                                    <option class="other-opt " value="Benin">Benin</option>-->
-<!--                                    <option class="other-opt " value="Bermuda">Bermuda</option>-->
-<!--                                    <option class="other-opt " value="Bhutan">Bhutan</option>-->
-<!--                                    <option class="other-opt " value="Bolivia">Bolivia</option>-->
-<!--                                    <option class="other-opt " value="Bosnia and Herzegovina">Bosnia and Herzegovina-->
-<!--                                    </option>-->
-<!--                                    <option class="other-opt " value="Botswana">Botswana</option>-->
-<!--                                    <option class="other-opt " value="Bouvet Island">Bouvet Island</option>-->
-<!--                                    <option class="other-opt " value="Brazil">Brazil</option>-->
-<!--                                    <option class="other-opt " value="British Indian Ocean Territory">British Indian-->
-<!--                                        Ocean Territory-->
-<!--                                    </option>-->
-<!--                                    <option class="other-opt " value="Brunei Darussalam">Brunei Darussalam</option>-->
-<!--                                    <option class="other-opt " value="Bulgaria">Bulgaria</option>-->
-<!--                                    <option class="other-opt " value="Burkina Faso">Burkina Faso</option>-->
-<!--                                    <option class="other-opt " value="Burundi">Burundi</option>-->
-<!--                                    <option class="other-opt " value="Cambodia">Cambodia</option>-->
-<!--                                    <option class="other-opt " value="Cameroon">Cameroon</option>-->
-<!--                                    <option class="other-opt " value="Canada">Canada</option>-->
-<!--                                    <option class="other-opt " value="Cape Verde">Cape Verde</option>-->
-<!--                                    <option class="other-opt " value="Cayman Islands">Cayman Islands</option>-->
-<!--                                    <option class="other-opt " value="Central African Republic">Central African-->
-<!--                                        Republic-->
-<!--                                    </option>-->
-<!--                                    <option class="other-opt " value="Chad">Chad</option>-->
-<!--                                    <option class="other-opt " value="Chile">Chile</option>-->
-<!--                                    <option class="other-opt " value="China">China</option>-->
-<!--                                    <option class="other-opt " value="Christmas Island">Christmas Island</option>-->
-<!--                                    <option class="other-opt " value="Cocos (Keeling) Islands">Cocos (Keeling) Islands-->
-<!--                                    </option>-->
-<!--                                    <option class="other-opt " value="Colombia">Colombia</option>-->
-<!--                                    <option class="other-opt " value="Comoros">Comoros</option>-->
-<!--                                    <option class="other-opt " value="Congo">Congo</option>-->
-<!--                                    <option class="other-opt " value="Congo, The Democratic Republic of the">Congo, The-->
-<!--                                        Democratic Republic of the-->
-<!--                                    </option>-->
-<!--                                    <option class="other-opt " value="Cook Islands">Cook Islands</option>-->
-<!--                                    <option class="other-opt " value="Costa Rica">Costa Rica</option>-->
-<!--                                    <option class="other-opt " value="Cote D'Ivoire">Cote D'Ivoire</option>-->
-<!--                                    <option class="other-opt " value="Croatia">Croatia</option>-->
-<!--                                    <option class="other-opt " value="Cuba">Cuba</option>-->
-<!--                                    <option class="other-opt " value="Cyprus">Cyprus</option>-->
-<!--                                    <option class="other-opt " value="Czech Republic">Czech Republic</option>-->
-<!--                                    <option class="other-opt " value="Denmark">Denmark</option>-->
-<!--                                    <option class="other-opt " value="Djibouti">Djibouti</option>-->
-<!--                                    <option class="other-opt " value="Dominica">Dominica</option>-->
-<!--                                    <option class="other-opt " value="Dominican Republic">Dominican Republic</option>-->
-<!--                                    <option class="other-opt " value="Ecuador">Ecuador</option>-->
-<!--                                    <option class="other-opt " value="Egypt">Egypt</option>-->
-<!--                                    <option class="other-opt " value="El Salvador">El Salvador</option>-->
-<!--                                    <option class="other-opt " value="Equatorial Guinea">Equatorial Guinea</option>-->
-<!--                                    <option class="other-opt " value="Eritrea">Eritrea</option>-->
-<!--                                    <option class="other-opt " value="Estonia">Estonia</option>-->
-<!--                                    <option class="other-opt " value="Ethiopia">Ethiopia</option>-->
-<!--                                    <option class="other-opt " value="Falkland Islands (Malvinas)">Falkland Islands-->
-<!--                                        (Malvinas)-->
-<!--                                    </option>-->
-<!--                                    <option class="other-opt " value="Faroe Islands">Faroe Islands</option>-->
-<!--                                    <option class="other-opt " value="Fiji">Fiji</option>-->
-<!--                                    <option class="other-opt " value="Finland">Finland</option>-->
-<!--                                    <option class="other-opt " value="France">France</option>-->
-<!--                                    <option class="other-opt " value="French Guiana">French Guiana</option>-->
-<!--                                    <option class="other-opt " value="French Polynesia">French Polynesia</option>-->
-<!--                                    <option class="other-opt " value="French Southern Territories">French Southern-->
-<!--                                        Territories-->
-<!--                                    </option>-->
-<!--                                    <option class="other-opt " value="Gabon">Gabon</option>-->
-<!--                                    <option class="other-opt " value="Gambia">Gambia</option>-->
-<!--                                    <option class="other-opt " value="Georgia">Georgia</option>-->
-<!--                                    <option class="other-opt " value="Germany">Germany</option>-->
-<!--                                    <option class="other-opt " value="Ghana">Ghana</option>-->
-<!--                                    <option class="other-opt " value="Gibraltar">Gibraltar</option>-->
-<!--                                    <option class="other-opt " value="Greece">Greece</option>-->
-<!--                                    <option class="other-opt " value="Greenland">Greenland</option>-->
-<!--                                    <option class="other-opt " value="Grenada">Grenada</option>-->
-<!--                                    <option class="other-opt " value="Guadeloupe">Guadeloupe</option>-->
-<!--                                    <option class="other-opt " value="Guam">Guam</option>-->
-<!--                                    <option class="other-opt " value="Guatemala">Guatemala</option>-->
-<!--                                    <option class="other-opt " value="Guernsey">Guernsey</option>-->
-<!--                                    <option class="other-opt " value="Guinea">Guinea</option>-->
-<!--                                    <option class="other-opt " value="Guinea-Bissau">Guinea-Bissau</option>-->
-<!--                                    <option class="other-opt " value="Guyana">Guyana</option>-->
-<!--                                    <option class="other-opt " value="Haiti">Haiti</option>-->
-<!--                                    <option class="other-opt " value="Heard Island and Mcdonald Islands">Heard Island-->
-<!--                                        and Mcdonald Islands-->
-<!--                                    </option>-->
-<!--                                    <option class="other-opt " value="Holy See (Vatican City State)">Holy See (Vatican-->
-<!--                                        City State)-->
-<!--                                    </option>-->
-<!--                                    <option class="other-opt " value="Honduras">Honduras</option>-->
-<!--                                    <option class="other-opt " value="Hong Kong">Hong Kong</option>-->
-<!--                                    <option class="other-opt " value="Hungary">Hungary</option>-->
-<!--                                    <option class="other-opt " value="Iceland">Iceland</option>-->
-<!--                                    <option class="other-opt " value="India">India</option>-->
-<!--                                    <option class="other-opt " value="Indonesia">Indonesia</option>-->
-<!--                                    <option class="other-opt " value="Iran, Islamic Republic Of">Iran, Islamic Republic-->
-<!--                                        Of-->
-<!--                                    </option>-->
-<!--                                    <option class="other-opt " value="Iraq">Iraq</option>-->
-<!--                                    <option class="other-opt " value="Ireland">Ireland</option>-->
-<!--                                    <option class="other-opt " value="Isle of Man">Isle of Man</option>-->
-<!--                                    <option class="other-opt " value="Israel">Israel</option>-->
-<!--                                    <option class="other-opt " value="Italy">Italy</option>-->
-<!--                                    <option class="other-opt " value="Jamaica">Jamaica</option>-->
-<!--                                    <option class="other-opt " value="Japan">Japan</option>-->
-<!--                                    <option class="other-opt " value="Jersey">Jersey</option>-->
-<!--                                    <option class="other-opt " value="Jordan">Jordan</option>-->
-<!--                                    <option class="other-opt " value="Kazakhstan">Kazakhstan</option>-->
-<!--                                    <option class="other-opt " value="Kenya">Kenya</option>-->
-<!--                                    <option class="other-opt " value="Kiribati">Kiribati</option>-->
-<!--                                    <option class="other-opt " value="Korea, Democratic People's Republic of">Korea,-->
-<!--                                        Democratic People's Republic of-->
-<!--                                    </option>-->
-<!--                                    <option class="other-opt " value="Korea, Republic of">Korea, Republic of</option>-->
-<!--                                    <option class="other-opt " value="Kuwait">Kuwait</option>-->
-<!--                                    <option class="other-opt " value="Kyrgyzstan">Kyrgyzstan</option>-->
-<!--                                    <option class="other-opt " value="Lao People's Democratic Republic">Lao People's-->
-<!--                                        Democratic Republic-->
-<!--                                    </option>-->
-<!--                                    <option class="other-opt " value="Latvia">Latvia</option>-->
-<!--                                    <option class="other-opt " value="Lebanon">Lebanon</option>-->
-<!--                                    <option class="other-opt " value="Lesotho">Lesotho</option>-->
-<!--                                    <option class="other-opt " value="Liberia">Liberia</option>-->
-<!--                                    <option class="other-opt " value="Libyan Arab Jamahiriya">Libyan Arab Jamahiriya-->
-<!--                                    </option>-->
-<!--                                    <option class="other-opt " value="Liechtenstein">Liechtenstein</option>-->
-<!--                                    <option class="other-opt " value="Lithuania">Lithuania</option>-->
-<!--                                    <option class="other-opt " value="Luxembourg">Luxembourg</option>-->
-<!--                                    <option class="other-opt " value="Macao">Macao</option>-->
-<!--                                    <option class="other-opt " value="Macedonia, The Former Yugoslav Republic of">-->
-<!--                                        Macedonia, The Former Yugoslav Republic of-->
-<!--                                    </option>-->
-<!--                                    <option class="other-opt " value="Madagascar">Madagascar</option>-->
-<!--                                    <option class="other-opt " value="Malawi">Malawi</option>-->
-<!--                                    <option class="other-opt " value="Malaysia">Malaysia</option>-->
-<!--                                    <option class="other-opt " value="Maldives">Maldives</option>-->
-<!--                                    <option class="other-opt " value="Mali">Mali</option>-->
-<!--                                    <option class="other-opt " value="Malta">Malta</option>-->
-<!--                                    <option class="other-opt " value="Marshall Islands">Marshall Islands</option>-->
-<!--                                    <option class="other-opt " value="Martinique">Martinique</option>-->
-<!--                                    <option class="other-opt " value="Mauritania">Mauritania</option>-->
-<!--                                    <option class="other-opt " value="Mauritius">Mauritius</option>-->
-<!--                                    <option class="other-opt " value="Mayotte">Mayotte</option>-->
-<!--                                    <option class="other-opt " value="Mexico">Mexico</option>-->
-<!--                                    <option class="other-opt " value="Micronesia, Federated States of">Micronesia,-->
-<!--                                        Federated States of-->
-<!--                                    </option>-->
-<!--                                    <option class="other-opt " value="Moldova, Republic of">Moldova, Republic of-->
-<!--                                    </option>-->
-<!--                                    <option class="other-opt " value="Monaco">Monaco</option>-->
-<!--                                    <option class="other-opt " value="Mongolia">Mongolia</option>-->
-<!--                                    <option class="other-opt " value="Montserrat">Montserrat</option>-->
-<!--                                    <option class="other-opt " value="Morocco">Morocco</option>-->
-<!--                                    <option class="other-opt " value="Mozambique">Mozambique</option>-->
-<!--                                    <option class="other-opt " value="Myanmar">Myanmar</option>-->
-<!--                                    <option class="other-opt " value="Namibia">Namibia</option>-->
-<!--                                    <option class="other-opt " value="Nauru">Nauru</option>-->
-<!--                                    <option class="other-opt " value="Nepal">Nepal</option>-->
-<!--                                    <option class="other-opt " value="Netherlands">Netherlands</option>-->
-<!--                                    <option class="other-opt " value="Netherlands Antilles">Netherlands Antilles-->
-<!--                                    </option>-->
-<!--                                    <option class="other-opt " value="New Caledonia">New Caledonia</option>-->
-<!--                                    <option class="other-opt " value="New Zealand">New Zealand</option>-->
-<!--                                    <option class="other-opt " value="Nicaragua">Nicaragua</option>-->
-<!--                                    <option class="other-opt " value="Niger">Niger</option>-->
-<!--                                    <option class="other-opt " value="Nigeria">Nigeria</option>-->
-<!--                                    <option class="other-opt " value="Niue">Niue</option>-->
-<!--                                    <option class="other-opt " value="Norfolk Island">Norfolk Island</option>-->
-<!--                                    <option class="other-opt " value="Northern Mariana Islands">Northern Mariana-->
-<!--                                        Islands-->
-<!--                                    </option>-->
-<!--                                    <option class="other-opt " value="Norway">Norway</option>-->
-<!--                                    <option class="other-opt " value="Oman">Oman</option>-->
-<!--                                    <option class="other-opt " value="Pakistan">Pakistan</option>-->
-<!--                                    <option class="other-opt " value="Palau">Palau</option>-->
-<!--                                    <option class="other-opt " value="Palestinian Territory, Occupied">Palestinian-->
-<!--                                        Territory, Occupied-->
-<!--                                    </option>-->
-<!--                                    <option class="other-opt " value="Panama">Panama</option>-->
-<!--                                    <option class="other-opt " value="Papua New Guinea">Papua New Guinea</option>-->
-<!--                                    <option class="other-opt " value="Paraguay">Paraguay</option>-->
-<!--                                    <option class="other-opt " value="Peru">Peru</option>-->
-<!--                                    <option class="other-opt " value="Philippines">Philippines</option>-->
-<!--                                    <option class="other-opt " value="Pitcairn">Pitcairn</option>-->
-<!--                                    <option class="other-opt " value="Poland">Poland</option>-->
-<!--                                    <option class="other-opt " value="Portugal">Portugal</option>-->
-<!--                                    <option class="other-opt " value="Puerto Rico">Puerto Rico</option>-->
-<!--                                    <option class="other-opt " value="Qatar">Qatar</option>-->
-<!--                                    <option class="other-opt " value="Reunion">Reunion</option>-->
-<!--                                    <option class="other-opt " value="Romania">Romania</option>-->
-<!--                                    <option class="other-opt " value="Russian Federation">Russian Federation</option>-->
-<!--                                    <option class="other-opt " value="Rwanda">Rwanda</option>-->
-<!--                                    <option class="other-opt " value="Saint Helena">Saint Helena</option>-->
-<!--                                    <option class="other-opt " value="Saint Kitts and Nevis">Saint Kitts and Nevis-->
-<!--                                    </option>-->
-<!--                                    <option class="other-opt " value="Saint Lucia">Saint Lucia</option>-->
-<!--                                    <option class="other-opt " value="Saint Pierre and Miquelon">Saint Pierre and-->
-<!--                                        Miquelon-->
-<!--                                    </option>-->
-<!--                                    <option class="other-opt " value="Saint Vincent and the Grenadines">Saint Vincent-->
-<!--                                        and the Grenadines-->
-<!--                                    </option>-->
-<!--                                    <option class="other-opt " value="Samoa">Samoa</option>-->
-<!--                                    <option class="other-opt " value="San Marino">San Marino</option>-->
-<!--                                    <option class="other-opt " value="Sao Tome and Principe">Sao Tome and Principe-->
-<!--                                    </option>-->
-<!--                                    <option class="other-opt " value="Saudi Arabia">Saudi Arabia</option>-->
-<!--                                    <option class="other-opt " value="Senegal">Senegal</option>-->
-<!--                                    <option class="other-opt " value="Serbia and Montenegro">Serbia and Montenegro-->
-<!--                                    </option>-->
-<!--                                    <option class="other-opt " value="Seychelles">Seychelles</option>-->
-<!--                                    <option class="other-opt " value="Sierra Leone">Sierra Leone</option>-->
-<!--                                    <option class="other-opt " value="Singapore">Singapore</option>-->
-<!--                                    <option class="other-opt " value="Slovakia">Slovakia</option>-->
-<!--                                    <option class="other-opt " value="Slovenia">Slovenia</option>-->
-<!--                                    <option class="other-opt " value="Solomon Islands">Solomon Islands</option>-->
-<!--                                    <option class="other-opt " value="Somalia">Somalia</option>-->
-<!--                                    <option class="other-opt " value="South Africa">South Africa</option>-->
-<!--                                    <option class="other-opt " value="South Georgia and the South Sandwich Islands">-->
-<!--                                        South Georgia and the South Sandwich Islands-->
-<!--                                    </option>-->
-<!--                                    <option class="other-opt " value="Spain">Spain</option>-->
-<!--                                    <option class="other-opt " value="Sri Lanka">Sri Lanka</option>-->
-<!--                                    <option class="other-opt " value="Sudan">Sudan</option>-->
-<!--                                    <option class="other-opt " value="Suriname">Suriname</option>-->
-<!--                                    <option class="other-opt " value="Svalbard and Jan Mayen">Svalbard and Jan Mayen-->
-<!--                                    </option>-->
-<!--                                    <option class="other-opt " value="Swaziland">Swaziland</option>-->
-<!--                                    <option class="other-opt " value="Sweden">Sweden</option>-->
-<!--                                    <option class="other-opt " value="Switzerland">Switzerland</option>-->
-<!--                                    <option class="other-opt " value="Syrian Arab Republic">Syrian Arab Republic-->
-<!--                                    </option>-->
-<!--                                    <option class="other-opt " value="Taiwan, Province of China">Taiwan, Province of-->
-<!--                                        China-->
-<!--                                    </option>-->
-<!--                                    <option class="other-opt " value="Tajikistan">Tajikistan</option>-->
-<!--                                    <option class="other-opt " value="Tanzania, United Republic of">Tanzania, United-->
-<!--                                        Republic of-->
-<!--                                    </option>-->
-<!--                                    <option class="other-opt " value="Thailand">Thailand</option>-->
-<!--                                    <option class="other-opt " value="Timor-Leste">Timor-Leste</option>-->
-<!--                                    <option class="other-opt " value="Togo">Togo</option>-->
-<!--                                    <option class="other-opt " value="Tokelau">Tokelau</option>-->
-<!--                                    <option class="other-opt " value="Tonga">Tonga</option>-->
-<!--                                    <option class="other-opt " value="Trinidad and Tobago">Trinidad and Tobago</option>-->
-<!--                                    <option class="other-opt " value="Tunisia">Tunisia</option>-->
-<!--                                    <option class="other-opt " value="Turkey">Turkey</option>-->
-<!--                                    <option class="other-opt " value="Turkmenistan">Turkmenistan</option>-->
-<!--                                    <option class="other-opt " value="Turks and Caicos Islands">Turks and Caicos-->
-<!--                                        Islands-->
-<!--                                    </option>-->
-<!--                                    <option class="other-opt " value="Tuvalu">Tuvalu</option>-->
-<!--                                    <option class="other-opt " value="Uganda">Uganda</option>-->
-<!--                                    <option class="other-opt " value="Ukraine">Ukraine</option>-->
-<!--                                    <option class="other-opt " value="United Arab Emirates">United Arab Emirates-->
-<!--                                    </option>-->
-<!--                                    <option class="other-opt " value="United Kingdom">United Kingdom</option>-->
-<!--                                    <option class="other-opt " value="United States">United States</option>-->
-<!--                                    <option class="other-opt " value="United States Minor Outlying Islands">United-->
-<!--                                        States Minor Outlying Islands-->
-<!--                                    </option>-->
-<!--                                    <option class="other-opt " value="Uruguay">Uruguay</option>-->
-<!--                                    <option class="other-opt " value="Uzbekistan">Uzbekistan</option>-->
-<!--                                    <option class="other-opt " value="Vanuatu">Vanuatu</option>-->
-<!--                                    <option class="other-opt " value="Venezuela">Venezuela</option>-->
-<!--                                    <option class="other-opt " value="Vietnam">Vietnam</option>-->
-<!--                                    <option class="other-opt " value="Virgin Islands, British">Virgin Islands, British-->
-<!--                                    </option>-->
-<!--                                    <option class="other-opt " value="Virgin Islands, U.S.">Virgin Islands, U.S.-->
-<!--                                    </option>-->
-<!--                                    <option class="other-opt " value="Wallis and Futuna">Wallis and Futuna</option>-->
-<!--                                    <option class="other-opt " value="Western Sahara">Western Sahara</option>-->
-<!--                                    <option class="other-opt " value="Yemen">Yemen</option>-->
-<!--                                    <option class="other-opt " value="Zambia">Zambia</option>-->
-<!--                                    <option class="other-opt " value="Zimbabwe">Zimbabwe</option>-->
-<!--                                </select>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        &lt;!&ndash; City &ndash;&gt;-->
-<!--                        <div class="form-group">-->
-<!--                            <div class="col-lg-12"><input type="text" name="city" class="form-control"-->
-<!--                                                          placeholder="City" required="" autocomplete="off"></div>-->
-<!--                        </div>-->
-<!--                        &lt;!&ndash; ADDRESS &ndash;&gt;-->
-<!--                        <div class="form-group">-->
-<!--                            <div class="col-lg-12"><input type="text" name="address" class="form-control"-->
-<!--                                                          placeholder="Address" required="" autocomplete="off"></div>-->
-<!--                        </div>-->
-
-<!--                        <div class="form-group">-->
-<!--                            <div class="col-lg-12">-->
-<!--                                <textarea class="form-control" rows="4" id="inputMessage" name="inputMessage"-->
-<!--                                          placeholder="Your message..." required=""></textarea>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="form-group">-->
-<!--                            <div class="col-lg-12">-->
-<!--                                <button type="submit" class="btn btn-lg btn-primary checkout">-->
-<!--                                    Send Order-->
-<!--                                </button>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </form>-->
-
-<!--                </div>-->
-            </div>
-
-        </div>
 
     </div>
+
+</div>
+
+</div>
 </div>
 
 <%- include('parts/footer') %>
